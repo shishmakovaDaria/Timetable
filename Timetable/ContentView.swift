@@ -9,6 +9,11 @@ import SwiftUI
 import OpenAPIURLSession
 
 struct ContentView: View {
+    let client = Client(
+        serverURL: try! Servers.server1(),
+        transport: URLSessionTransport()
+    )
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -19,18 +24,12 @@ struct ContentView: View {
         .padding()
         
         .onAppear {
-            stations()
+            //stations()
+            settlement()
         }
     }
     
     func stations() {
-        guard let serverURL = try? Servers.server1() else { return }
-        
-        let client = Client(
-            serverURL: serverURL,
-            transport: URLSessionTransport()
-        )
-        
         let service = NearestStationsService(
             client: client,
             apikey: Constants.apikey
@@ -43,6 +42,21 @@ struct ContentView: View {
                 distance: 50
             )
             print(stations)
+        }
+    }
+    
+    func settlement() {
+        let service = NearestSettlementService(
+            client: client,
+            apikey: Constants.apikey
+        )
+        
+        Task {
+            let settlement = try await service.getNearestSettlement(
+                lat: 59.864177,
+                lng: 30.319163
+            )
+            print(settlement)
         }
     }
 }
