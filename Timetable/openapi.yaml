@@ -255,6 +255,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Copyright'
+  /v3.0/thread/:
+    get:
+      tags:
+      - getThread
+      summary: Список станций следования
+      operationId: getThread
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: uid
+        in: query
+        description: идентификатор нитки в Яндекс Расписаниях
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: код станции отправления
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: код станции прибытия
+        required: false
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: дата списка рейсов
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thread'
 components:
   schemas:
     Stations:
@@ -437,6 +481,28 @@ components:
           $ref: '#/components/schemas/TransportSubtype'
         express_type:
           type: string
+        except_days:
+          type: string
+        arrival_date:
+          type: string
+        from:
+          type: string
+        interval:
+          $ref: '#/components/schemas/Interval'
+        departure_date:
+          type: string
+        start_time:
+          type: string
+        days:
+          type: string
+        to:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stop'
+        start_date:
+          type: string
     TransportSubtype:
       type: object
       properties:
@@ -544,4 +610,30 @@ components:
         text:
           type: string
         logo_hm:
+          type: string
+    Interval:
+      type: object
+      properties:
+        density:
+          type: string
+        end_time:
+          type: string
+        begin_time:
+          type: string
+    Stop:
+      type: object
+      properties:
+        arrival:
+          type: string
+        departure:
+          type: string
+        duration:
+          type: number
+        stop_time:
+          type: number
+        station:
+          $ref: '#/components/schemas/Station'
+        terminal:
+          type: string
+        platform:
           type: string

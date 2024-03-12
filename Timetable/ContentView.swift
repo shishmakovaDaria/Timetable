@@ -29,7 +29,8 @@ struct ContentView: View {
             //carrierInfo()
             //schedule()
             //scheduleBetweenStations()
-            copyright()
+            //copyright()
+            thread()
         }
     }
     
@@ -113,6 +114,19 @@ struct ContentView: View {
             let copyright = try await service.getCopyright()
             
             print(copyright)
+        }
+    }
+    
+    func thread() {
+        let service = ThreadService(
+            client: client,
+            apikey: Constants.apikey
+        )
+        
+        Task {
+            let thread = try await service.getThread(uid: "092S_17_2")
+            
+            print(thread)
         }
     }
 }
