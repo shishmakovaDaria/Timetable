@@ -162,7 +162,7 @@ paths:
           type: string
       - name: date
         in: query
-        description: дата списока рейсов
+        description: дата списка рейсов
         required: false
         schema:
           type: string
@@ -185,6 +185,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScheduleResponse'
+  /v3.0/search/:
+    get:
+      tags:
+      - getScheduleBetweenStations
+      summary: Расписание рейсов между станциями
+      operationId: getScheduleBetweenStations
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: код станции отправления
+        required: true
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: код станции прибытия
+        required: true
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: дата списка рейсов
+        required: false
+        schema:
+          type: string
+      - name: transport_types
+        in: query
+        description: тип транспортного средства
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleStationsResponse'
 components:
   schemas:
     Stations:
@@ -376,3 +420,83 @@ components:
           type: string
         title:
           type: string
+    ScheduleStationsResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        interval_segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Segment'
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Segment'
+        search:
+          $ref: '#/components/schemas/Search'
+    Search:
+      type: object
+      properties:
+        date:
+          type: string
+        to:
+          $ref: '#/components/schemas/Station'
+        from:
+          $ref: '#/components/schemas/Station'
+    Segment:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/Station'
+        thread:
+          $ref: '#/components/schemas/Thread'
+        departure_platform:
+          type: string
+        stops:
+          type: string
+        departure_terminal:
+          type: string
+        to:
+          $ref: '#/components/schemas/Station'
+        has_transfers:
+          type: boolean
+        tickets_info:
+          $ref: '#/components/schemas/TicketsInfo'
+        duration:
+          type: number
+        arrival_terminal:
+          type: string
+        start_date:
+          type: string
+        arrival_platform:
+          type: string
+        departure:
+          type: string
+        arrival:
+          type: string
+    TicketsInfo:
+      type: object
+      properties:
+        et_marker:
+          type: boolean
+        places:
+          type: array
+          items:
+            $ref: '#/components/schemas/Places'
+    Places:
+      type: object
+      properties:
+        currency:
+          type: string
+        price:
+          $ref: '#/components/schemas/Price'
+        name:
+          type: string
+    Price:
+      type: object
+      properties:
+        cents:
+          type: integer
+        whole:
+          type: integer

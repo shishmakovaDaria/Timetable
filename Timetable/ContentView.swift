@@ -27,7 +27,8 @@ struct ContentView: View {
             //stations()
             //settlement()
             //carrierInfo()
-            schedule()
+            //schedule()
+            scheduleBetweenStations()
         }
     }
     
@@ -82,6 +83,21 @@ struct ContentView: View {
         
         Task {
             let schedule = try await service.getStationSchedule(station: "s9600213")
+            print(schedule)
+        }
+    }
+    
+    func scheduleBetweenStations() {
+        let service = ScheduleBetweenStationsService(
+            client: client,
+            apikey: Constants.apikey
+        )
+        
+        Task {
+            let schedule = try await service.getScheduleBetweenStations(
+                fromStation: "c146",
+                toStation: "c213"
+            )
             print(schedule)
         }
     }
