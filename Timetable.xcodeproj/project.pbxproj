@@ -21,6 +21,7 @@
 		6133E90C2B9FA4A6001ED1A3 /* CarrierInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6133E90B2B9FA4A6001ED1A3 /* CarrierInfoService.swift */; };
 		6133E91A2BA0EE26001ED1A3 /* StationScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6133E9192BA0EE26001ED1A3 /* StationScheduleService.swift */; };
 		6133E91D2BA0FCC7001ED1A3 /* ScheduleBetweenStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6133E91C2BA0FCC7001ED1A3 /* ScheduleBetweenStationsService.swift */; };
+		6133E9202BA101F6001ED1A3 /* CopyrightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6133E91F2BA101F6001ED1A3 /* CopyrightService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		6133E90B2B9FA4A6001ED1A3 /* CarrierInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierInfoService.swift; sourceTree = "<group>"; };
 		6133E9192BA0EE26001ED1A3 /* StationScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationScheduleService.swift; sourceTree = "<group>"; };
 		6133E91C2BA0FCC7001ED1A3 /* ScheduleBetweenStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBetweenStationsService.swift; sourceTree = "<group>"; };
+		6133E91F2BA101F6001ED1A3 /* CopyrightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				6133E90B2B9FA4A6001ED1A3 /* CarrierInfoService.swift */,
 				6133E9192BA0EE26001ED1A3 /* StationScheduleService.swift */,
 				6133E91C2BA0FCC7001ED1A3 /* ScheduleBetweenStationsService.swift */,
+				6133E91F2BA101F6001ED1A3 /* CopyrightService.swift */,
 				6133E9052B9E4A56001ED1A3 /* Constants.swift */,
 				612823912B9109790018ED7C /* Assets.xcassets */,
 				612823932B9109790018ED7C /* Preview Content */,
@@ -185,6 +188,7 @@
 				612823902B9109780018ED7C /* ContentView.swift in Sources */,
 				6128238E2B9109780018ED7C /* TimetableApp.swift in Sources */,
 				6133E9062B9E4A56001ED1A3 /* Constants.swift in Sources */,
+				6133E9202BA101F6001ED1A3 /* CopyrightService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

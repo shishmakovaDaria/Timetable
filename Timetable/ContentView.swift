@@ -28,7 +28,8 @@ struct ContentView: View {
             //settlement()
             //carrierInfo()
             //schedule()
-            scheduleBetweenStations()
+            //scheduleBetweenStations()
+            copyright()
         }
     }
     
@@ -99,6 +100,19 @@ struct ContentView: View {
                 toStation: "c213"
             )
             print(schedule)
+        }
+    }
+    
+    func copyright() {
+        let service = CopyrightService(
+            client: client,
+            apikey: Constants.apikey
+        )
+        
+        Task {
+            let copyright = try await service.getCopyright()
+            
+            print(copyright)
         }
     }
 }
