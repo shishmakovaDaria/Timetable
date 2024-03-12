@@ -26,7 +26,8 @@ struct ContentView: View {
         .onAppear {
             //stations()
             //settlement()
-            carrierInfo()
+            //carrierInfo()
+            schedule()
         }
     }
     
@@ -70,6 +71,18 @@ struct ContentView: View {
         Task {
             let carrierInfo = try await service.getCarrierInfo(code: 680)
             print(carrierInfo)
+        }
+    }
+    
+    func schedule() {
+        let service = StationScheduleService(
+            client: client,
+            apikey: Constants.apikey
+        )
+        
+        Task {
+            let schedule = try await service.getStationSchedule(station: "s9600213")
+            print(schedule)
         }
     }
 }

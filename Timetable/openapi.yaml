@@ -141,6 +141,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Carriers'
+  /v3.0/schedule/:
+    get:
+      tags:
+      - getStationSchedule
+      summary: Расписание рейсов по станции
+      operationId: getStationSchedule
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: station
+        in: query
+        description: код станции
+        required: true
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: дата списока рейсов
+        required: false
+        schema:
+          type: string
+      - name: transport_types
+        in: query
+        description: тип транспортного средства
+        required: false
+        schema:
+          type: string
+      - name: event
+        in: query
+        description: событие
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleResponse'
 components:
   schemas:
     Stations:
@@ -250,4 +294,85 @@ components:
         sirena:
           type: string
         iata:
+          type: string
+    ScheduleResponse:
+      type: object
+      properties:
+        date:
+          type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        station:
+          $ref: '#/components/schemas/Station'
+        schedule:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationSchedule'
+        interval_schedule:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationSchedule'
+        schedule_direction:
+          $ref: '#/components/schemas/ScheduleDirection'
+        directions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduleDirection'
+    ScheduleDirection:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+    StationSchedule:
+      type: object
+      properties:
+        except_days:
+          type: string
+        arrival:
+          type: string
+        thread:
+          $ref: '#/components/schemas/Thread'
+        is_fuzzy:
+          type: boolean
+        days:
+          type: string
+        stops:
+          type: string
+        departure:
+          type: string
+        terminal:
+          type: string
+        platform:
+          type: string
+    Thread:
+      type: object
+      properties:
+        uid:
+          type: string
+        title:
+          type: string
+        number:
+          type: string
+        short_title:
+          type: string
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        transport_type:
+          type: string
+        vehicle:
+          type: string
+        transport_subtype:
+          $ref: '#/components/schemas/TransportSubtype'
+        express_type:
+          type: string
+    TransportSubtype:
+      type: object
+      properties:
+        color:
+          type: string
+        code:
+          type: string
+        title:
           type: string
