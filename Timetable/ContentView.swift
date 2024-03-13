@@ -24,6 +24,8 @@ struct ContentView: View {
         .padding()
         
         .onAppear {
+            //TODO: - раскомментировать функцию для проверки сервиса
+            
             //stations()
             //settlement()
             //carrierInfo()
@@ -31,7 +33,7 @@ struct ContentView: View {
             //scheduleBetweenStations()
             //copyright()
             //thread()
-            stationsList()
+            //stationsList()
         }
     }
     
@@ -144,6 +146,7 @@ struct ContentView: View {
                 let data = try await Data(collecting: stationList, upTo: 50*1024*1024)
                 let stations = try JSONDecoder().decode(Components.Schemas.StationsListResponse.self, from: data)
                 print(stations.countries?.count)
+                //тут только число, чтобы не висло
             } catch {
                 print("ERROR")
             }

@@ -77,18 +77,9 @@
 		6128238C2B9109780018ED7C /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
-				6133E8FD2B9E400E001ED1A3 /* openapi.yaml */,
-				6133E8FF2B9E4025001ED1A3 /* openapi-generator-config.yaml */,
 				6128238D2B9109780018ED7C /* TimetableApp.swift */,
 				6128238F2B9109780018ED7C /* ContentView.swift */,
-				6133E9032B9E41BD001ED1A3 /* NearestStationsService.swift */,
-				6133E9082B9F91EB001ED1A3 /* NearestSettlementService.swift */,
-				6133E90B2B9FA4A6001ED1A3 /* CarrierInfoService.swift */,
-				6133E9192BA0EE26001ED1A3 /* StationScheduleService.swift */,
-				6133E91C2BA0FCC7001ED1A3 /* ScheduleBetweenStationsService.swift */,
-				6133E91F2BA101F6001ED1A3 /* CopyrightService.swift */,
-				6133E9222BA10B11001ED1A3 /* ThreadService.swift */,
-				6133E9252BA1FD19001ED1A3 /* StationsListService.swift */,
+				61A7BB382BA208CE0086B05E /* NetworkServices */,
 				6133E9052B9E4A56001ED1A3 /* Constants.swift */,
 				612823912B9109790018ED7C /* Assets.xcassets */,
 				612823932B9109790018ED7C /* Preview Content */,
@@ -102,6 +93,23 @@
 				612823942B9109790018ED7C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		61A7BB382BA208CE0086B05E /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				6133E8FD2B9E400E001ED1A3 /* openapi.yaml */,
+				6133E8FF2B9E4025001ED1A3 /* openapi-generator-config.yaml */,
+				6133E9032B9E41BD001ED1A3 /* NearestStationsService.swift */,
+				6133E9082B9F91EB001ED1A3 /* NearestSettlementService.swift */,
+				6133E90B2B9FA4A6001ED1A3 /* CarrierInfoService.swift */,
+				6133E9192BA0EE26001ED1A3 /* StationScheduleService.swift */,
+				6133E91C2BA0FCC7001ED1A3 /* ScheduleBetweenStationsService.swift */,
+				6133E91F2BA101F6001ED1A3 /* CopyrightService.swift */,
+				6133E9222BA10B11001ED1A3 /* ThreadService.swift */,
+				6133E9252BA1FD19001ED1A3 /* StationsListService.swift */,
+			);
+			path = NetworkServices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
