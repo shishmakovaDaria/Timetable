@@ -30,7 +30,8 @@ struct ContentView: View {
             //schedule()
             //scheduleBetweenStations()
             //copyright()
-            thread()
+            //thread()
+            stationsList()
         }
     }
     
@@ -127,6 +128,25 @@ struct ContentView: View {
             let thread = try await service.getThread(uid: "092S_17_2")
             
             print(thread)
+        }
+    }
+    
+    func stationsList() {
+        let service = StationsListService(
+            client: client,
+            apikey: Constants.apikey
+        )
+        
+        Task {
+            do {
+                let stationList = try await service.getStationsList()
+                
+                let data = try await Data(collecting: stationList, upTo: 50*1024*1024)
+                let stations = try JSONDecoder().decode(Components.Schemas.StationsListResponse.self, from: data)
+                print(stations.countries?.count)
+            } catch {
+                print("ERROR")
+            }
         }
     }
 }

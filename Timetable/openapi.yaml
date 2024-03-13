@@ -299,6 +299,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Thread'
+  /v3.0/stations_list/:
+    get:
+      tags:
+      - getStationsList
+      summary: Список всех доступных станций
+      operationId: getStationsList
+      parameters:
+      - name: apikey
+        in: query
+        description: API key
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: json или xml
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StationsListResponse'
+            text/html:
+              schema: {}
 components:
   schemas:
     Stations:
@@ -636,4 +664,69 @@ components:
         terminal:
           type: string
         platform:
+          type: string
+    StationsListResponse:
+      type: object
+      properties:
+        countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+    Country:
+      type: object
+      properties:
+        regions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Region'
+        codes:
+          $ref: '#/components/schemas/CountryCodes'
+        title:
+          type: string
+    CountryCodes:
+      type: object
+      properties:
+        yandex_code:
+          type: string
+    Region:
+      type: object
+      properties:
+        settlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/City'
+        codes:
+          $ref: '#/components/schemas/CountryCodes'
+        title:
+          type: string
+    City:
+      type: object
+      properties:
+        title:
+          type: string
+        codes:
+          $ref: '#/components/schemas/CountryCodes'
+        stations:
+          type: array
+          items:
+            $ref: '#/components/schemas/StationInCity'
+    StationCodes:
+      type: object
+      properties:
+        esr_code:
+          type: string
+        yandex_code:
+          type: string
+    StationInCity:
+      type: object
+      properties:
+        direction:
+          type: string
+        codes:
+          $ref: '#/components/schemas/StationCodes'
+        station_type:
+          type: string
+        title:
+          type: string
+        transport_type:
           type: string
