@@ -21,6 +21,15 @@ struct ContentView: View {
                 }
         }
         .tint(.ttBlack)
+        .onAppear {
+            let standardAppearance = UITabBarAppearance()
+
+            standardAppearance.configureWithOpaqueBackground()
+            standardAppearance.shadowColor = .black.withAlphaComponent(0.5)
+
+            UITabBar.appearance().standardAppearance = standardAppearance
+            UITabBar.appearance().scrollEdgeAppearance = standardAppearance
+        }
     }
 }
 

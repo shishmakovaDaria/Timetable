@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Color.blue.edgesIgnoringSafeArea(.top)
+        Color.white.edgesIgnoringSafeArea(.top)
     }
 }
 
