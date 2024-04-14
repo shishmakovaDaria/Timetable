@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ChoosingCity: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
+    @Binding var destinationBinding: String
     
     var body: some View {
         NavigationStack {
@@ -18,7 +19,7 @@ struct ChoosingCity: View {
                     Spacer()
                     Image(systemName: "chevron.right")
                         .background(
-                            NavigationLink("", destination: ChoosingStation(stations: city.stations))
+                            NavigationLink("", destination: ChoosingStation(dismiss: _dismiss, destinationBinding: $destinationBinding, selectedCity: city))
                                 .opacity(0)
                         )
                 }
@@ -28,7 +29,7 @@ struct ChoosingCity: View {
             .listRowSpacing(19)
             .navigationBarItems(
                 leading: Button("", systemImage: "chevron.left") {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
             )
             .navigationTitle("Выбор города")
@@ -36,10 +37,6 @@ struct ChoosingCity: View {
             .tint(.ttBlack)
         }
     }
-}
-
-#Preview {
-    ChoosingCity()
 }
 
 // MARK: - mock data

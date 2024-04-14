@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ChoosingView: View {
-    @State private var fromText: String = ""
-    @State private var toText = ""
+    @Binding var fromText: String
+    @Binding var toText: String
     @State private var isPresentingChoosingCity = false
+    @State private var choosingFrom: Bool = true
     
     var body: some View {
         ZStack {
@@ -25,24 +26,26 @@ struct ChoosingView: View {
                         .foregroundStyle(.white)
                     VStack(alignment: .leading, spacing: 28) {
                         ZStack {
-                            TextField("Откуда", text: $fromText)
+                            TextField("", text: $fromText, prompt: Text("Откуда").foregroundColor(.ttGray))
                                 .font(.system(size: 17, weight: .regular))
                                 .foregroundStyle(.ttBlack)
                                 .disabled(true)
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
-                           isPresentingChoosingCity = true
+                            choosingFrom = true
+                            isPresentingChoosingCity = true
                         }
                         ZStack {
-                            TextField("Куда", text: $toText)
+                            TextField("", text: $toText, prompt: Text("Куда").foregroundColor(.ttGray))
                                 .font(.system(size: 17, weight: .regular))
                                 .foregroundStyle(.ttBlack)
                                 .disabled(true)
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
-                           isPresentingChoosingCity = true
+                            choosingFrom = false
+                            isPresentingChoosingCity = true
                         }
                     }
                     .padding(.leading, 32)
@@ -55,15 +58,12 @@ struct ChoosingView: View {
         }
         .frame(height: 128)
         .fullScreenCover(isPresented: $isPresentingChoosingCity) {
-            ChoosingCity()
+            let destination = choosingFrom ? $fromText : $toText
+            ChoosingCity(destinationBinding: destination)
         }
     }
     
     private func changeTapped() {
         swap(&fromText, &toText)
     }
-}
-
-#Preview {
-    ChoosingView()
 }

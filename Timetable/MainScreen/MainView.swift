@@ -9,10 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     @State var findButtonIsHidden = true
+    @State private var fromText: String = ""
+    @State private var toText = ""
     
     var body: some View {
         VStack {
-            ChoosingView()
+            ChoosingView(fromText: $fromText, toText: $toText)
                 .padding(.top, 208)
                 .padding([.leading, .trailing], 16)
             if !$findButtonIsHidden.wrappedValue {
@@ -28,6 +30,18 @@ struct MainView: View {
             }
             Spacer()
         }
+        
+        .onChange(of: fromText, perform: { _ in
+            if fromText != "" && toText != "" {
+                findButtonIsHidden = false
+            }
+        })
+        
+        .onChange(of: toText, perform: { _ in
+            if fromText != "" && toText != "" {
+                findButtonIsHidden = false
+            }
+        })
     }
     
     private func findTapped() {

@@ -8,13 +8,33 @@
 import SwiftUI
 
 struct ChoosingStation: View {
-    var stations: [Station]
+    @Environment(\.dismiss) var dismiss
+    @Binding var destinationBinding: String
+    var selectedCity: City
     
     var body: some View {
-        Text("Переданная строка: \(stations.first!.title)")
+        NavigationStack {
+            List(selectedCity.stations) { station in
+                HStack {
+                    Text(station.title)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                }
+                .listRowSeparator(.hidden)
+                .onTapGesture {
+                    destinationBinding = "\(selectedCity.title) (\(station.title))"
+                    dismiss()
+                }
+            }
+            .listStyle(.plain)
+            .listRowSpacing(19)
+            .navigationBarItems(
+                leading: Image("chevron.left")
+            )
+            .toolbarRole(.editor)
+            .navigationTitle("Выбор станции")
+            .navigationBarTitleDisplayMode(.inline)
+            .tint(.ttBlack)
+        }
     }
-}
-
-#Preview {
-    ChoosingStation(stations: [Station(title: "Киевский вокзал")])
 }
