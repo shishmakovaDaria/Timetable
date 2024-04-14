@@ -29,6 +29,7 @@
 		61B6C5572BCB113900C62CC9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6C5562BCB113900C62CC9 /* MainView.swift */; };
 		61B6C55A2BCB11A100C62CC9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6C5592BCB11A100C62CC9 /* SettingsView.swift */; };
 		61E349472BCBEC0100C9528D /* ChoosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E349462BCBEC0100C9528D /* ChoosingView.swift */; };
+		61E3494B2BCC2AA900C9528D /* ChoosingCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E3494A2BCC2AA900C9528D /* ChoosingCity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		61B6C5562BCB113900C62CC9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		61B6C5592BCB11A100C62CC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		61E349462BCBEC0100C9528D /* ChoosingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingView.swift; sourceTree = "<group>"; };
+		61E3494A2BCC2AA900C9528D /* ChoosingCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingCity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				6128238D2B9109780018ED7C /* TimetableApp.swift */,
 				61B6C5462BCB03F000C62CC9 /* RootView.swift */,
 				61E349422BCBEACE00C9528D /* MainScreen */,
+				61E349492BCC2A6400C9528D /* ChoosingScreens */,
 				61E349452BCBEB0500C9528D /* SettingsScreen */,
 				61A7BB382BA208CE0086B05E /* NetworkServices */,
 				612823932B9109790018ED7C /* Preview Content */,
@@ -149,6 +152,14 @@
 				61B6C5592BCB11A100C62CC9 /* SettingsView.swift */,
 			);
 			path = SettingsScreen;
+			sourceTree = "<group>";
+		};
+		61E349492BCC2A6400C9528D /* ChoosingScreens */ = {
+			isa = PBXGroup;
+			children = (
+				61E3494A2BCC2AA900C9528D /* ChoosingCity.swift */,
+			);
+			path = ChoosingScreens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61E3494B2BCC2AA900C9528D /* ChoosingCity.swift in Sources */,
 				6133E9042B9E41BD001ED1A3 /* NearestStationsService.swift in Sources */,
 				61B6C5572BCB113900C62CC9 /* MainView.swift in Sources */,
 				6133E9262BA1FD19001ED1A3 /* StationsListService.swift in Sources */,

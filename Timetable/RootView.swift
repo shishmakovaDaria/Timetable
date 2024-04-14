@@ -25,7 +25,7 @@ struct RootView: View {
             let standardAppearance = UITabBarAppearance()
 
             standardAppearance.configureWithOpaqueBackground()
-            standardAppearance.shadowColor = .black.withAlphaComponent(0.5)
+            standardAppearance.shadowColor = .ttGray
 
             UITabBar.appearance().standardAppearance = standardAppearance
             UITabBar.appearance().scrollEdgeAppearance = standardAppearance
