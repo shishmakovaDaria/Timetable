@@ -10,52 +10,59 @@ import SwiftUI
 struct ChoosingCity: View {
     @Environment(\.dismiss) var dismiss
     @Binding var destinationBinding: String
+    @State private var cities: [City] = MockData.mockCities
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack {
-            List(mockCities) { city in
-                HStack {
-                    Text(city.title)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .background(
-                            NavigationLink("", destination: ChoosingStation(dismiss: _dismiss, destinationBinding: $destinationBinding, selectedCity: city))
-                                .opacity(0)
-                        )
+            VStack {
+                if cities.isEmpty {
+                    Text("Город не найден")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundStyle(.ttBlack)
+                } else {
+                    List(cities) { city in
+                        HStack {
+                            Text(city.title)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .background(
+                                    NavigationLink("", destination: ChoosingStation(dismiss: _dismiss, destinationBinding: $destinationBinding, selectedCity: city, stations: city.stations))
+                                        .opacity(0)
+                                )
+                        }
+                        .listRowSeparator(.hidden)
+                       
+                    }
+                    .listStyle(.plain)
+                    .listRowSpacing(19)
                 }
-                .listRowSeparator(.hidden)
             }
-            .listStyle(.plain)
-            .listRowSpacing(19)
             .navigationBarItems(
-                leading: Button("", systemImage: "chevron.left") {
-                    dismiss()
-                }
+                leading:
+                    ZStack {
+                        Image(systemName: "chevron.left")
+                        Button("") {
+                            dismiss()
+                        }
+                    }
             )
             .navigationTitle("Выбор города")
             .navigationBarTitleDisplayMode(.inline)
             .tint(.ttBlack)
+            .searchable(text: $searchText, prompt: "Введите запрос")
         }
+        
+        .onChange(of: searchText, perform: { _ in
+            if searchText.isEmpty {
+                cities = MockData.mockCities
+            } else {
+                cities = filterCities(query: searchText)
+            }
+        })
+    }
+    
+    private func filterCities(query: String) -> [City] {
+        MockData.mockCities.filter({ $0.title.lowercased().contains(query.lowercased())})
     }
 }
-
-// MARK: - mock data
-let mockCities: [City] = [
-    City(title: "Москва", stations: mockStations),
-    City(title: "Санкт-Петербург", stations: mockStations),
-    City(title: "Сочи", stations: mockStations),
-    City(title: "Самара", stations: mockStations),
-    City(title: "Краснодар", stations: mockStations),
-    City(title: "Казань", stations: mockStations),
-    City(title: "Омск", stations: mockStations)
-]
-
-let mockStations: [Station] = [
-    Station(title: "Киевский вокзал"),
-    Station(title: "Курский вокзал"),
-    Station(title: "Ярославский вокзал"),
-    Station(title: "Белорусский вокзал"),
-    Station(title: "Ленинградский вокзал"),
-    Station(title: "Московский вокзал"),
-    Station(title: "Витебский вокзал")
-]
