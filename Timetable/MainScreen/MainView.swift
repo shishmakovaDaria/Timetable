@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var findButtonIsHidden = false
+    @State var findButtonIsHidden = true
     
     var body: some View {
         VStack {

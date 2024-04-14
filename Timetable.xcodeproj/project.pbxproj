@@ -30,6 +30,9 @@
 		61B6C55A2BCB11A100C62CC9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6C5592BCB11A100C62CC9 /* SettingsView.swift */; };
 		61E349472BCBEC0100C9528D /* ChoosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E349462BCBEC0100C9528D /* ChoosingView.swift */; };
 		61E3494B2BCC2AA900C9528D /* ChoosingCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E3494A2BCC2AA900C9528D /* ChoosingCity.swift */; };
+		61E3494F2BCC42FE00C9528D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E3494E2BCC42FE00C9528D /* City.swift */; };
+		61E349522BCC434600C9528D /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E349512BCC434600C9528D /* Station.swift */; };
+		61E349592BCC49D500C9528D /* ChoosingStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E349582BCC49D500C9528D /* ChoosingStation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		61B6C5592BCB11A100C62CC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		61E349462BCBEC0100C9528D /* ChoosingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingView.swift; sourceTree = "<group>"; };
 		61E3494A2BCC2AA900C9528D /* ChoosingCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingCity.swift; sourceTree = "<group>"; };
+		61E3494E2BCC42FE00C9528D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		61E349512BCC434600C9528D /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		61E349582BCC49D500C9528D /* ChoosingStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingStation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				61E3494A2BCC2AA900C9528D /* ChoosingCity.swift */,
+				61E349582BCC49D500C9528D /* ChoosingStation.swift */,
+				61E3494E2BCC42FE00C9528D /* City.swift */,
+				61E349512BCC434600C9528D /* Station.swift */,
 			);
 			path = ChoosingScreens;
 			sourceTree = "<group>";
@@ -254,8 +263,11 @@
 				6133E91A2BA0EE26001ED1A3 /* StationScheduleService.swift in Sources */,
 				6133E9092B9F91EB001ED1A3 /* NearestSettlementService.swift in Sources */,
 				6133E90C2B9FA4A6001ED1A3 /* CarrierInfoService.swift in Sources */,
+				61E3494F2BCC42FE00C9528D /* City.swift in Sources */,
+				61E349522BCC434600C9528D /* Station.swift in Sources */,
 				61B6C55A2BCB11A100C62CC9 /* SettingsView.swift in Sources */,
 				6133E91D2BA0FCC7001ED1A3 /* ScheduleBetweenStationsService.swift in Sources */,
+				61E349592BCC49D500C9528D /* ChoosingStation.swift in Sources */,
 				612823902B9109780018ED7C /* ServiceTestContentView.swift in Sources */,
 				6128238E2B9109780018ED7C /* TimetableApp.swift in Sources */,
 				6133E9062B9E4A56001ED1A3 /* Constants.swift in Sources */,
