@@ -9,7 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Color.white.edgesIgnoringSafeArea(.top)
+        VStack {
+            ChoosingView()
+                .padding(.top, 208)
+                .padding([.leading, .trailing], 16)
+            Spacer()
+        }
     }
 }
 
