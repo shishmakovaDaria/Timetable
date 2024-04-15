@@ -59,7 +59,7 @@ struct ChoosingView: View {
         .frame(height: 128)
         .fullScreenCover(isPresented: $isPresentingChoosingCity) {
             let destination = choosingFrom ? $fromText : $toText
-            ChoosingCity(destinationBinding: destination)
+            ChoosingCityView(destinationBinding: destination)
         }
     }
     

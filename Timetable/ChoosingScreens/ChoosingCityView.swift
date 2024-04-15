@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChoosingCity: View {
+struct ChoosingCityView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var destinationBinding: String
     @State private var cities: [City] = MockData.mockCities
@@ -27,7 +27,7 @@ struct ChoosingCity: View {
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .background(
-                                    NavigationLink("", destination: ChoosingStation(dismiss: _dismiss, destinationBinding: $destinationBinding, selectedCity: city, stations: city.stations))
+                                    NavigationLink("", destination: ChoosingStationView(dismiss: _dismiss, destinationBinding: $destinationBinding, selectedCity: city, stations: city.stations))
                                         .opacity(0)
                                 )
                         }

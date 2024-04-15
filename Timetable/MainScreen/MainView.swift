@@ -11,6 +11,7 @@ struct MainView: View {
     @State var findButtonIsHidden = true
     @State private var fromText: String = ""
     @State private var toText = ""
+    @State private var isPresentingSchedule = false
     
     var body: some View {
         VStack {
@@ -19,7 +20,7 @@ struct MainView: View {
                 .padding([.leading, .trailing], 16)
             if !$findButtonIsHidden.wrappedValue {
                 Button("Найти") {
-                    findTapped()
+                    isPresentingSchedule = true
                 }
                 .frame(width: 150, height: 60)
                 .background(.ttBlue)
@@ -42,10 +43,10 @@ struct MainView: View {
                 findButtonIsHidden = false
             }
         })
-    }
-    
-    private func findTapped() {
-        // TODO: переход на список перевозчиков
+        
+        .fullScreenCover(isPresented: $isPresentingSchedule) {
+            ScheduleView(fromText: fromText, toText: toText)
+        }
     }
 }
 

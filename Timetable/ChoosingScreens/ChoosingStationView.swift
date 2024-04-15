@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChoosingStation: View {
+struct ChoosingStationView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var destinationBinding: String
     var selectedCity: City
