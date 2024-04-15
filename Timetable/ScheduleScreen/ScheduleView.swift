@@ -19,29 +19,34 @@ struct ScheduleView: View {
                 Text("\(fromText) → \(toText)")
                     .font(.system(size: 24, weight: .bold))
                     .padding([.leading, .trailing, .top], 16)
-                ScrollView (showsIndicators: false) {
-                    LazyVStack {
-                        ForEach(schedules) { schedule in
-                            NavigationLink(destination: CarrierView(carrier: schedule.carrier)) {
-                                ScheduleRowView(schedule: schedule)
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+                if schedules.isEmpty {
+                    Text("Вариантов нет")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundStyle(.ttBlack)
+                } else {
+                    ScrollView (showsIndicators: false) {
+                        LazyVStack {
+                            ForEach(schedules) { schedule in
+                                NavigationLink(destination: CarrierView(carrier: schedule.carrier)) {
+                                    ScheduleRowView(schedule: schedule)
+                                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+                                }
                             }
                         }
+                        .padding([.leading, .trailing], 16)
                     }
-                    .padding([.leading, .trailing], 16)
                 }
                 
-                Button("Уточнить время") {
-                    // TODO: - уточнить время
+                NavigationLink(destination: FiltersView()) {
+                    Text("Уточнить время")
+                        .frame(maxWidth: .infinity, maxHeight: 60)
+                        .background(.ttBlue)
+                        .clipShape(.rect(cornerRadius: 16))
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding([.leading, .trailing], 16)
+                        .padding(.bottom, 24)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 60)
-                .background(.ttBlue)
-                .clipShape(.rect(cornerRadius: 16))
-                .font(.system(size: 17, weight: .bold))
-                .foregroundStyle(.white)
-                .padding([.leading, .trailing], 16)
-                .padding(.bottom, 24)
-                
             }
             .navigationBarItems(
                 leading:
