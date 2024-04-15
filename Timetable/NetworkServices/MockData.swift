@@ -56,6 +56,24 @@ enum MockData {
             departureTime: "12:30",
             arrivalTime: "21:00",
             travelTime: "9 часов"
+        ),
+        Schedule(
+            carrier: "РЖД",
+            transfer: "С пересадкой в Костроме",
+            image: "rzhd",
+            date: "14 января",
+            departureTime: "22:30",
+            arrivalTime: "08:15",
+            travelTime: "20 часов"
+        ),
+        Schedule(
+            carrier: "Урал логистика",
+            transfer: nil,
+            image: "ural",
+            date: "16 января",
+            departureTime: "12:30",
+            arrivalTime: "21:00",
+            travelTime: "9 часов"
         )
     ]
 }

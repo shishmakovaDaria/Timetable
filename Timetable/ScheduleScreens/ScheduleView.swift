@@ -15,15 +15,20 @@ struct ScheduleView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 16) {
                 Text("\(fromText) → \(toText)")
                     .font(.system(size: 24, weight: .bold))
                     .padding([.leading, .trailing, .top], 16)
-                List(schedules) { schedule in
-                    Text(schedule.carrier)
+                ScrollView (showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(schedules) { schedule in
+                            ScheduleRowView(schedule: schedule)
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+                        }
+                    }
+                    .padding([.leading, .trailing], 16)
                 }
-                .listStyle(.plain)
-                Spacer()
+                
                 Button("Уточнить время") {
                     // TODO: - уточнить время
                 }

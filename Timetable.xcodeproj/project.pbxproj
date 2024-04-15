@@ -24,6 +24,7 @@
 		6133E9202BA101F6001ED1A3 /* CopyrightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6133E91F2BA101F6001ED1A3 /* CopyrightService.swift */; };
 		6133E9232BA10B11001ED1A3 /* ThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6133E9222BA10B11001ED1A3 /* ThreadService.swift */; };
 		6133E9262BA1FD19001ED1A3 /* StationsListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6133E9252BA1FD19001ED1A3 /* StationsListService.swift */; };
+		61584FE72BCD624600BA8967 /* ScheduleRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61584FE62BCD624600BA8967 /* ScheduleRowView.swift */; };
 		616ACF1A2BCD1CAE006307B2 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616ACF192BCD1CAE006307B2 /* ScheduleView.swift */; };
 		616ACF1D2BCD26C0006307B2 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616ACF1C2BCD26C0006307B2 /* Schedule.swift */; };
 		61B6C5472BCB03F000C62CC9 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B6C5462BCB03F000C62CC9 /* RootView.swift */; };
@@ -55,6 +56,7 @@
 		6133E91F2BA101F6001ED1A3 /* CopyrightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightService.swift; sourceTree = "<group>"; };
 		6133E9222BA10B11001ED1A3 /* ThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadService.swift; sourceTree = "<group>"; };
 		6133E9252BA1FD19001ED1A3 /* StationsListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListService.swift; sourceTree = "<group>"; };
+		61584FE62BCD624600BA8967 /* ScheduleRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRowView.swift; sourceTree = "<group>"; };
 		616ACF192BCD1CAE006307B2 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		616ACF1C2BCD26C0006307B2 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		61B6C5462BCB03F000C62CC9 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				616ACF192BCD1CAE006307B2 /* ScheduleView.swift */,
+				61584FE62BCD624600BA8967 /* ScheduleRowView.swift */,
 				616ACF1C2BCD26C0006307B2 /* Schedule.swift */,
 			);
 			path = ScheduleScreens;
@@ -292,6 +295,7 @@
 				616ACF1A2BCD1CAE006307B2 /* ScheduleView.swift in Sources */,
 				6133E9062B9E4A56001ED1A3 /* Constants.swift in Sources */,
 				6133E9202BA101F6001ED1A3 /* CopyrightService.swift in Sources */,
+				61584FE72BCD624600BA8967 /* ScheduleRowView.swift in Sources */,
 				6133E9232BA10B11001ED1A3 /* ThreadService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
