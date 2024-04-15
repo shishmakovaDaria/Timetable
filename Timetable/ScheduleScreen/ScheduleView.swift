@@ -22,8 +22,10 @@ struct ScheduleView: View {
                 ScrollView (showsIndicators: false) {
                     LazyVStack {
                         ForEach(schedules) { schedule in
-                            ScheduleRowView(schedule: schedule)
-                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+                            NavigationLink(destination: CarrierView(carrier: schedule.carrier)) {
+                                ScheduleRowView(schedule: schedule)
+                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+                            }
                         }
                     }
                     .padding([.leading, .trailing], 16)

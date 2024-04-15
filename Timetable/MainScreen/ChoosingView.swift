@@ -28,7 +28,7 @@ struct ChoosingView: View {
                         ZStack {
                             TextField("", text: $fromText, prompt: Text("Откуда").foregroundColor(.ttGray))
                                 .font(.system(size: 17, weight: .regular))
-                                .foregroundStyle(.ttBlack)
+                                .foregroundStyle(.ttBlackUniversal)
                                 .disabled(true)
                         }
                         .contentShape(Rectangle())
@@ -39,7 +39,7 @@ struct ChoosingView: View {
                         ZStack {
                             TextField("", text: $toText, prompt: Text("Куда").foregroundColor(.ttGray))
                                 .font(.system(size: 17, weight: .regular))
-                                .foregroundStyle(.ttBlack)
+                                .foregroundStyle(.ttBlackUniversal)
                                 .disabled(true)
                         }
                         .contentShape(Rectangle())

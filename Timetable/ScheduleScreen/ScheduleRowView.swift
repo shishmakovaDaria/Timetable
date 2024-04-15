@@ -13,13 +13,13 @@ struct ScheduleRowView: View {
     var body: some View {
         VStack {
             HStack {
-                Image(schedule.image)
+                Image(schedule.carrier.image)
                     .frame(width: 38, height: 38)
                     .padding(.leading, 14)
                 VStack(alignment: .leading) {
-                    Text(schedule.carrier)
+                    Text(schedule.carrier.title)
                         .font(.system(size: 17, weight: .regular))
-                        .foregroundStyle(.ttBlack)
+                        .foregroundStyle(.ttBlackUniversal)
                     if let transfer = schedule.transfer {
                         Text(transfer)
                             .font(.system(size: 12, weight: .regular))
@@ -31,26 +31,26 @@ struct ScheduleRowView: View {
                 Text(schedule.date)
                     .padding(.trailing, 7)
                     .font(.system(size: 12, weight: .regular))
-                    .foregroundStyle(.ttBlack)
+                    .foregroundStyle(.ttBlackUniversal)
             }
             .padding(.top, 14)
             HStack {
                 Text(schedule.departureTime)
                     .font(.system(size: 17, weight: .regular))
-                    .foregroundStyle(.ttBlack)
+                    .foregroundStyle(.ttBlackUniversal)
                     .padding(.leading, 14)
                 Rectangle()
                     .frame(height: 1)
                     .foregroundStyle(.ttGray)
                 Text(schedule.travelTime)
                     .font(.system(size: 12, weight: .regular))
-                    .foregroundStyle(.ttBlack)
+                    .foregroundStyle(.ttBlackUniversal)
                 Rectangle()
                     .frame(height: 1)
                     .foregroundStyle(.ttGray)
                 Text(schedule.arrivalTime)
                     .font(.system(size: 17, weight: .regular))
-                    .foregroundStyle(.ttBlack)
+                    .foregroundStyle(.ttBlackUniversal)
                     .padding(.trailing, 14)
                 
             }
@@ -67,9 +67,8 @@ struct ScheduleRowView: View {
     ScheduleRowView(
         schedule:
             Schedule(
-                carrier: "РЖД",
+                carrier: MockData.mockCarriers[0],
                 transfer: "С пересадкой в Костроме",
-                image: "rzhd",
                 date: "14 января",
                 departureTime: "22:30",
                 arrivalTime: "08:15",

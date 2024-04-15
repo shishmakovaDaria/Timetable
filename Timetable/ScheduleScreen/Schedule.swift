@@ -9,9 +9,8 @@ import Foundation
 
 struct Schedule: Hashable, Identifiable {
     var id = UUID()
-    let carrier: String
+    let carrier: Carrier
     let transfer: String?
-    let image: String
     let date: String
     let departureTime: String
     let arrivalTime: String
