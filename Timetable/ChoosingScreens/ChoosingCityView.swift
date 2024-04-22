@@ -15,27 +15,31 @@ struct ChoosingCityView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                if cities.isEmpty {
-                    Text("Город не найден")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundStyle(.ttBlack)
-                } else {
-                    List(cities) { city in
-                        HStack {
-                            Text(city.title)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .background(
-                                    NavigationLink("", destination: ChoosingStationView(dismiss: _dismiss, destinationBinding: $destinationBinding, selectedCity: city, stations: city.stations))
-                                        .opacity(0)
-                                )
+            ZStack {
+                Color.ttWhite.ignoresSafeArea()
+                VStack {
+                    if cities.isEmpty {
+                        Text("Город не найден")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundStyle(.ttBlack)
+                    } else {
+                        List(cities) { city in
+                            HStack {
+                                Text(city.title)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .background(
+                                        NavigationLink("", destination: ChoosingStationView(dismiss: _dismiss, destinationBinding: $destinationBinding, selectedCity: city, stations: city.stations))
+                                            .opacity(0)
+                                    )
+                            }
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.ttWhite)
                         }
-                        .listRowSeparator(.hidden)
-                       
+                        .listStyle(.plain)
+                        .scrollContentBackground(.hidden)
+                        .listRowSpacing(19)
                     }
-                    .listStyle(.plain)
-                    .listRowSpacing(19)
                 }
             }
             .navigationBarItems(

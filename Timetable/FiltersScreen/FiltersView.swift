@@ -61,6 +61,7 @@ struct FiltersView: View {
                         .padding(.bottom, 24)
                 }
             }
+            .background(.ttWhite)
             .navigationBarItems(
                 leading: Text("")
             )

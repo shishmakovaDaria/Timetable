@@ -12,51 +12,51 @@ struct CarrierView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Image(carrier.image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 104)
+            ZStack {
+                Color.ttWhite.ignoresSafeArea()
+                VStack {
+                    Image(carrier.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 104)
+                        .padding(.top, 16)
+                    HStack {
+                        Text(carrier.fullTitle)
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundStyle(.ttBlack)
+                        Spacer()
+                    }
                     .padding(.top, 16)
-                HStack {
-                    Text(carrier.fullTitle)
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundStyle(.ttBlack)
-                    Spacer()
-                }
-                .padding(.top, 16)
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("E-mail")
-                            .font(.system(size: 17, weight: .regular))
-                            .foregroundStyle(.ttBlack)
-                        Text(carrier.email)
-                            .font(.system(size: 12, weight: .regular))
-                            .foregroundStyle(.ttBlue)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("E-mail")
+                                .font(.system(size: 17, weight: .regular))
+                                .foregroundStyle(.ttBlack)
+                            Text(carrier.email)
+                                .font(.system(size: 12, weight: .regular))
+                                .foregroundStyle(.ttBlue)
+                        }
+                        Spacer()
                     }
-                    Spacer()
-                }
-                .padding(.top, 16)
-                .frame(height: 60)
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Телефон")
-                            .font(.system(size: 17, weight: .regular))
-                            .foregroundStyle(.ttBlack)
-                        Text(carrier.phone)
-                            .font(.system(size: 12, weight: .regular))
-                            .foregroundStyle(.ttBlue)
+                    .padding(.top, 16)
+                    .frame(height: 60)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Телефон")
+                                .font(.system(size: 17, weight: .regular))
+                                .foregroundStyle(.ttBlack)
+                            Text(carrier.phone)
+                                .font(.system(size: 12, weight: .regular))
+                                .foregroundStyle(.ttBlue)
+                        }
+                        Spacer()
                     }
+                    .padding(.top, 0)
+                    .frame(height: 60)
                     Spacer()
                 }
-                .padding(.top, 0)
-                .frame(height: 60)
-                
-                
-                
-                Spacer()
+                .padding(.all, 16)
             }
-            .padding(.all, 16)
             .navigationBarItems(
                 leading: Text("")
             )
@@ -65,8 +65,6 @@ struct CarrierView: View {
             .navigationBarTitleDisplayMode(.inline)
             .tint(.ttBlack)
         }
-        
-        
     }
 }
 

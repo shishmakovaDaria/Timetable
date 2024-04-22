@@ -16,26 +16,31 @@ struct ChoosingStationView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                if stations.isEmpty {
-                    Text("Станция не найдена")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundStyle(.ttBlack)
-                } else {
-                    List(stations) { station in
-                        HStack {
-                            Text(station.title)
-                            Spacer()
-                            Image(systemName: "chevron.right")
+            ZStack {
+                Color.ttWhite.ignoresSafeArea()
+                VStack {
+                    if stations.isEmpty {
+                        Text("Станция не найдена")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundStyle(.ttBlack)
+                    } else {
+                        List(stations) { station in
+                            HStack {
+                                Text(station.title)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                            }
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.ttWhite)
+                            .onTapGesture {
+                                destinationBinding = "\(selectedCity.title) (\(station.title))"
+                                dismiss()
+                            }
                         }
-                        .listRowSeparator(.hidden)
-                        .onTapGesture {
-                            destinationBinding = "\(selectedCity.title) (\(station.title))"
-                            dismiss()
-                        }
+                        .listStyle(.plain)
+                        .scrollContentBackground(.hidden)
+                        .listRowSpacing(19)
                     }
-                    .listStyle(.plain)
-                    .listRowSpacing(19)
                 }
             }
             .navigationBarItems(

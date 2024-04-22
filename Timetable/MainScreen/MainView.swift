@@ -31,6 +31,7 @@ struct MainView: View {
             }
             Spacer()
         }
+        .background(.ttWhite)
         
         .onChange(of: fromText, perform: { _ in
             if fromText != "" && toText != "" {

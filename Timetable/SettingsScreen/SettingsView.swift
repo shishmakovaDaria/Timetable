@@ -17,6 +17,7 @@ struct SettingsView: View {
                 Toggle("Темная тема", isOn: $isDarkMode)
                     .tint(.ttBlue)
                     .listRowSeparator(.hidden)
+                    .listRowBackground(Color.ttWhite)
                 HStack {
                     Button("Пользовательское соглашение") {
                         showWebView.toggle()
@@ -24,9 +25,11 @@ struct SettingsView: View {
                     Spacer()
                     Image(systemName: "chevron.right")
                 }
+                .listRowBackground(Color.ttWhite)
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
+            .scrollContentBackground(.hidden)
             Spacer()
             Text("Приложение использует API «Яндекс.Расписания»")
                 .font(.system(size: 12, weight: .regular))
@@ -37,6 +40,7 @@ struct SettingsView: View {
                 .padding([.leading, .top, .trailing], 16)
                 .padding(.bottom, 24)
         }
+        .background(.ttWhite)
         .fullScreenCover(isPresented: $showWebView) {
             TermsOfUse(showWebView: $showWebView, url: URL(string: "https://yandex.ru/legal/practicum_offer/")!)
         }

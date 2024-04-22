@@ -28,6 +28,7 @@ struct FiltersRowView: View {
            
         }
         .frame(height: 60)
+        .background(.ttWhite)
     }
 }
 

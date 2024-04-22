@@ -48,6 +48,7 @@ struct ScheduleView: View {
                         .padding(.bottom, 24)
                 }
             }
+            .background(.ttWhite)
             .navigationBarItems(
                 leading:
                     ZStack {

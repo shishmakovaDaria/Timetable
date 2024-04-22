@@ -15,6 +15,8 @@ struct TermsOfUse: View {
     var body: some View {
         NavigationStack {
             WebView(url: url)
+                .ignoresSafeArea(edges: .bottom)
+                .background(.ttWhite)
                 .navigationBarItems(
                     leading:
                         ZStack {

@@ -25,12 +25,15 @@ struct ErrorView: View {
     var type: ErrorType
     
     var body: some View {
-        VStack {
-            Image(uiImage: type.image)
-            Text(type.rawValue)
-                .font(.system(size: 24, weight: .bold))
-                .foregroundStyle(.ttBlack)
-                .padding(.top, 16)
+        ZStack {
+            Color.ttWhite.ignoresSafeArea()
+            VStack {
+                Image(uiImage: type.image)
+                Text(type.rawValue)
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundStyle(.ttBlack)
+                    .padding(.top, 16)
+            }
         }
     }
 }
