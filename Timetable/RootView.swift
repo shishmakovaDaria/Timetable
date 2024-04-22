@@ -21,6 +21,7 @@ struct RootView: View {
                 }
         }
         .tint(.ttBlack)
+        .accentColor(.ttBlack)
         .onAppear {
             let standardAppearance = UITabBarAppearance()
 
