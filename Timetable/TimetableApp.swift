@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct TimetableApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }

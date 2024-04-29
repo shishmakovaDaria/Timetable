@@ -8,7 +8,7 @@
 import SwiftUI
 import OpenAPIURLSession
 
-struct ContentView: View {
+struct ServiceTestContentView: View {
     let client = Client(
         serverURL: try! Servers.server1(),
         transport: URLSessionTransport()
@@ -155,5 +155,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ServiceTestContentView()
 }
