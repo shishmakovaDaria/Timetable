@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StoriesView: View {
-    var storyGroups: [StoryGroup] = [
+    @State private var storyGroups: [StoryGroup] = [
         .storyGroup1,
         .storyGroup2,
         .storyGroup3,
@@ -25,14 +25,18 @@ struct StoriesView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: rows) {
-                ForEach(storyGroups) { storyGroup in
+                ForEach($storyGroups) { storyGroup in
                     StoryCellView(storyGroup: storyGroup)
+                        .onTapGesture {
+                            setAsShown(for: storyGroup.id)
+                        }
                 }
             }
         }
     }
-}
-
-#Preview {
-    StoriesView()
+    
+    private func setAsShown(for groupId: UUID) {
+        guard let groupIndex = storyGroups.firstIndex(where: {$0.id == groupId}) else { return }
+        storyGroups[groupIndex].isShown.toggle()
+    }
 }
