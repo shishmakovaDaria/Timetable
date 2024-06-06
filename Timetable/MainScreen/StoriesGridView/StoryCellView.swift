@@ -27,7 +27,8 @@ struct StoryCellView: View {
                         RoundedRectangle(cornerRadius: 16)
                     )
                     .overlay(
-                        Color.white.opacity(0.5)
+                        RoundedRectangle(cornerRadius: 16)
+                            .foregroundStyle(.white.opacity(0.5))
                     )
             }
             VStack {

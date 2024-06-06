@@ -10,7 +10,6 @@ import SwiftUI
 struct StoriesContentView: View {
     @Environment(\.dismiss) var dismiss
     let stories: [Story]
-    @State var currentStoryIndex: Int = 0
 
     var body: some View {
         ZStack(alignment: .topTrailing) {

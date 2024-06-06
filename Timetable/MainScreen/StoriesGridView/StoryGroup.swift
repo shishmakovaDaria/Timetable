@@ -8,13 +8,14 @@
 import Foundation
 
 struct StoryGroup: Identifiable {
-    let id = UUID()
+    let id: Int
     let image: String
     let title: String
     var isShown: Bool
     let stories: [Story]
     
     static let storyGroup1 = StoryGroup(
+        id: 1,
         image: "preview1",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,
@@ -22,6 +23,7 @@ struct StoryGroup: Identifiable {
     )
     
     static let storyGroup2 = StoryGroup(
+        id: 2,
         image: "preview2",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,
@@ -29,6 +31,7 @@ struct StoryGroup: Identifiable {
     )
     
     static let storyGroup3 = StoryGroup(
+        id: 3,
         image: "preview3",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,
@@ -36,6 +39,7 @@ struct StoryGroup: Identifiable {
     )
     
     static let storyGroup4 = StoryGroup(
+        id: 4,
         image: "preview4",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,
@@ -43,6 +47,7 @@ struct StoryGroup: Identifiable {
     )
     
     static let storyGroup5 = StoryGroup(
+        id: 5,
         image: "preview5",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,
@@ -50,6 +55,7 @@ struct StoryGroup: Identifiable {
     )
     
     static let storyGroup6 = StoryGroup(
+        id: 6,
         image: "preview6",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,
@@ -57,6 +63,7 @@ struct StoryGroup: Identifiable {
     )
     
     static let storyGroup7 = StoryGroup(
+        id: 7,
         image: "preview7",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,
@@ -64,6 +71,7 @@ struct StoryGroup: Identifiable {
     )
     
     static let storyGroup8 = StoryGroup(
+        id: 8,
         image: "preview8",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,
@@ -71,6 +79,7 @@ struct StoryGroup: Identifiable {
     )
     
     static let storyGroup9 = StoryGroup(
+        id: 9,
         image: "preview9",
         title: "Text Text Text Text Text Text Text Text Text Text",
         isShown: false,

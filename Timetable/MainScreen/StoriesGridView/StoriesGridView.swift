@@ -43,12 +43,12 @@ struct StoriesGridView: View {
         }
     }
     
-    private func setAsShown(for groupId: UUID) {
+    private func setAsShown(for groupId: Int) {
         guard let groupIndex = storyGroups.firstIndex(where: {$0.id == groupId}) else { return }
         storyGroups[groupIndex].isShown = true
     }
     
-    private func setToShow(for groupId: UUID) {
+    private func setToShow(for groupId: Int) {
         guard let groupIndex = storyGroups.firstIndex(where: {$0.id == groupId}) else { return }
         storiesToShow = storyGroups[groupIndex].stories
     }
