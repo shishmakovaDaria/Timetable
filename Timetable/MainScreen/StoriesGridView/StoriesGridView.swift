@@ -1,5 +1,5 @@
 //
-//  StoriesView.swift
+//  StoriesGridView.swift
 //  Timetable
 //
 //  Created by Дарья Шишмакова on 06.06.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StoriesView: View {
+struct StoriesGridView: View {
     @State private var storyGroups: [StoryGroup] = [
         .storyGroup1,
         .storyGroup2,

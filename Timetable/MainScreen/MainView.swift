@@ -15,7 +15,7 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            StoriesView()
+            StoriesGridView()
                 .padding(.top, 24)
                 .padding([.leading, .trailing], 16)
                 .frame(height: 188)
