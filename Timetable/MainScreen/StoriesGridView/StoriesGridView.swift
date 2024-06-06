@@ -20,6 +20,9 @@ struct StoriesGridView: View {
         .storyGroup9
     ]
     
+    @State private var storiesToShow: [Story] = []
+    @State private var isPresentingStoriesContentView = false
+    
     let rows = [GridItem(.flexible())]
     
     var body: some View {
@@ -29,14 +32,24 @@ struct StoriesGridView: View {
                     StoryCellView(storyGroup: storyGroup)
                         .onTapGesture {
                             setAsShown(for: storyGroup.id)
+                            setToShow(for: storyGroup.id)
+                            isPresentingStoriesContentView = true
                         }
                 }
             }
+        }
+        .fullScreenCover(isPresented: $isPresentingStoriesContentView) {
+            StoriesContentView(stories: storiesToShow)
         }
     }
     
     private func setAsShown(for groupId: UUID) {
         guard let groupIndex = storyGroups.firstIndex(where: {$0.id == groupId}) else { return }
-        storyGroups[groupIndex].isShown.toggle()
+        storyGroups[groupIndex].isShown = true
+    }
+    
+    private func setToShow(for groupId: UUID) {
+        guard let groupIndex = storyGroups.firstIndex(where: {$0.id == groupId}) else { return }
+        storiesToShow = storyGroups[groupIndex].stories
     }
 }
