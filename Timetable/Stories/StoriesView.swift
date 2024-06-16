@@ -13,11 +13,17 @@ struct StoriesView: View {
     @State var currentStoryIndex: Int = 0
     @State var currentProgress: CGFloat = 0
     var isShown: (() -> Void)
+    var showNextGroup: (() -> Void)
+    var showPreviousGroup: (() -> Void)
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
             if #available(iOS 17.0, *) {
-                StoriesTabView(stories: stories, currentStoryIndex: $currentStoryIndex)
+                StoriesTabView(stories: stories,
+                               currentStoryIndex: $currentStoryIndex,
+                               showNextGroup: { showNextGroup() },
+                               showPreviousGroup: { showPreviousGroup() }
+                )
                     .onChange(of: currentStoryIndex) { oldValue, newValue in
                         didChangeCurrentIndex(oldIndex: oldValue, newIndex: newValue)
                     }
