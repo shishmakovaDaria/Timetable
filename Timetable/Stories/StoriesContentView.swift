@@ -13,10 +13,10 @@ struct StoriesContentView: View {
     @Binding var selectedStoriesGroupIndex: Int
 
     var body: some View {
-        Color.ttBlackUniversal
-            .ignoresSafeArea()
-            .overlay {
-                if #available(iOS 17.0, *) {
+        if #available(iOS 17.0, *) {
+            Color.ttBlackUniversal
+                .ignoresSafeArea()
+                .overlay {
                     TabView(
                         selection: $selectedStoriesGroupIndex
                     ) {
@@ -25,7 +25,7 @@ struct StoriesContentView: View {
                                 StoriesView(
                                     stories: storyGroups[selectedStoriesGroupIndex].stories,
                                     isShown: {
-                                        storyGroups[selectedStoriesGroupIndex].isShown = true
+                                        setGroupAsShown(at: selectedStoriesGroupIndex)
                                         if index == storyGroups.count - 1 {
                                             dismiss()
                                         } else {
@@ -40,7 +40,7 @@ struct StoriesContentView: View {
                                     }
                                 )
                                 CloseButton(action: {
-                                    storyGroups[selectedStoriesGroupIndex].isShown = true
+                                    setGroupAsShown(at: selectedStoriesGroupIndex)
                                     dismiss()
                                 })
                                     .padding(.top, 57)
@@ -55,9 +55,13 @@ struct StoriesContentView: View {
                         )
                     )
                     .onChange(of: selectedStoriesGroupIndex) { oldValue, newValue in
-                        storyGroups[oldValue].isShown = true
+                        setGroupAsShown(at: oldValue)
                     }
                 }
             }
+    }
+    private func setGroupAsShown(at index: Int) {
+        let updatedGroup = storyGroups[index].update(isShown: true)
+        storyGroups[index] = updatedGroup
     }
 }

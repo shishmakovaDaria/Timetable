@@ -8,17 +8,7 @@
 import SwiftUI
 
 struct StoriesGridView: View {
-    @State private var storyGroups: [StoryGroup] = [
-        .storyGroup1,
-        .storyGroup2,
-        .storyGroup3,
-        .storyGroup4,
-        .storyGroup5,
-        .storyGroup6,
-        .storyGroup7,
-        .storyGroup8,
-        .storyGroup9
-    ]
+    @State private var storyGroups = MockStories.storyGroups
     
     @State private var storiesToShowIndex: Int = 0
     @State private var isPresentingStoriesContentView = false
