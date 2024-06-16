@@ -25,7 +25,7 @@ struct StoriesContentView: View {
                                 StoriesView(
                                     stories: storyGroups[selectedStoriesGroupIndex].stories,
                                     isShown: {
-                                        setGroupAsShown(at: selectedStoriesGroupIndex)
+                                        storyGroups[selectedStoriesGroupIndex] = storyGroups[selectedStoriesGroupIndex].update(isShown: true)
                                         if index == storyGroups.count - 1 {
                                             dismiss()
                                         } else {
@@ -40,7 +40,7 @@ struct StoriesContentView: View {
                                     }
                                 )
                                 CloseButton(action: {
-                                    setGroupAsShown(at: selectedStoriesGroupIndex)
+                                    storyGroups[selectedStoriesGroupIndex] = storyGroups[selectedStoriesGroupIndex].update(isShown: true)
                                     dismiss()
                                 })
                                     .padding(.top, 57)
@@ -55,13 +55,9 @@ struct StoriesContentView: View {
                         )
                     )
                     .onChange(of: selectedStoriesGroupIndex) { oldValue, newValue in
-                        setGroupAsShown(at: oldValue)
+                        storyGroups[oldValue] = storyGroups[oldValue].update(isShown: true)
                     }
                 }
             }
-    }
-    private func setGroupAsShown(at index: Int) {
-        let updatedGroup = storyGroups[index].update(isShown: true)
-        storyGroups[index] = updatedGroup
     }
 }
