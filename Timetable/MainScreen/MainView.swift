@@ -15,8 +15,12 @@ struct MainView: View {
     
     var body: some View {
         VStack {
+            StoriesGridView()
+                .padding(.top, 24)
+                .padding([.leading, .trailing], 16)
+                .frame(height: 188)
             ChoosingView(fromText: $fromText, toText: $toText)
-                .padding(.top, 208)
+                .padding(.top, 20)
                 .padding([.leading, .trailing], 16)
             if !$findButtonIsHidden.wrappedValue {
                 Button("Найти") {
