@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ChoosingCityView: View {
+    @ObservedObject var viewModel = ChoosingCityViewModel()
     @Environment(\.dismiss) var dismiss
     @Binding var destinationBinding: String
-    @State private var cities: [City] = MockData.mockCities
     @State private var searchText = ""
     
     var body: some View {
@@ -18,12 +18,12 @@ struct ChoosingCityView: View {
             ZStack {
                 Color.ttWhite.ignoresSafeArea()
                 VStack {
-                    if cities.isEmpty {
+                    if viewModel.citiesToShow.isEmpty {
                         Text("Город не найден")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundStyle(.ttBlack)
                     } else {
-                        List(cities) { city in
+                        List(viewModel.citiesToShow) { city in
                             HStack {
                                 Text(city.title)
                                 Spacer()
@@ -58,15 +58,10 @@ struct ChoosingCityView: View {
         }
         
         .onChange(of: searchText, perform: { _ in
-            if searchText.isEmpty {
-                cities = MockData.mockCities
-            } else {
-                cities = filterCities(query: searchText)
-            }
+            viewModel.filterCities(query: searchText)
         })
-    }
-    
-    private func filterCities(query: String) -> [City] {
-        MockData.mockCities.filter({ $0.title.lowercased().contains(query.lowercased())})
+        .onAppear {
+            viewModel.loadCities()
+        }
     }
 }
