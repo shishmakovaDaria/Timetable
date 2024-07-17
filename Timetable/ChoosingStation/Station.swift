@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Station: Hashable, Identifiable {
+struct Station: Hashable, Identifiable, Sendable {
     var id = UUID()
     var title: String
     var code: String
