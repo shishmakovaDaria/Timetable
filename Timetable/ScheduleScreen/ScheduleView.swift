@@ -58,7 +58,7 @@ struct ScheduleView: View {
                         }
                     }
             )
-            .onAppear {
+            .task {
                 viewModel.loadSchedules(fromStation: fromPath.station.code, toStation: toPath.station.code)
             }
         }

@@ -69,7 +69,7 @@ struct ChoosingCityView: View {
         .onChange(of: searchText, perform: { _ in
             viewModel.filterCities(query: searchText)
         })
-        .onAppear {
+        .task {
             viewModel.loadCities()
         }
     }
