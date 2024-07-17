@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ChoosingStationView: View {
+    @ObservedObject var viewModel = ChoosingStationViewModel()
     @Environment(\.dismiss) var dismiss
     @Binding var destination: PathModel
-    @State var stations: [Station]
     @State private var searchText = ""
     
     var body: some View {
@@ -18,12 +18,12 @@ struct ChoosingStationView: View {
             ZStack {
                 Color.ttWhite.ignoresSafeArea()
                 VStack {
-                    if stations.isEmpty {
+                    if viewModel.stationsToShow.isEmpty {
                         Text("Станция не найдена")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundStyle(.ttBlack)
                     } else {
-                        List(stations) { station in
+                        List(viewModel.stationsToShow) { station in
                             HStack {
                                 Text(station.title)
                                 Spacer()
@@ -53,15 +53,11 @@ struct ChoosingStationView: View {
         }
         
         .onChange(of: searchText, perform: { _ in
-            if searchText.isEmpty {
-                stations = destination.city.stations
-            } else {
-                stations = filterStations(query: searchText)
-            }
+            viewModel.filterStations(query: searchText)
         })
-    }
-    
-    private func filterStations(query: String) -> [Station] {
-        destination.city.stations.filter({ $0.title.lowercased().contains(query.lowercased())})
+        .onAppear {
+            viewModel.allStations = destination.city.stations
+            viewModel.stationsToShow = destination.city.stations
+        }
     }
 }

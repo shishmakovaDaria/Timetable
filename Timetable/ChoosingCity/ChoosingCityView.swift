@@ -35,7 +35,7 @@ struct ChoosingCityView: View {
                                     Image(systemName: "chevron.right")
                                 }
                                 .navigationDestination(isPresented: $isPresented) {
-                                    ChoosingStationView(dismiss: _dismiss, destination: $destination, stations: city.stations)
+                                    ChoosingStationView(dismiss: _dismiss, destination: $destination)
                                 }
                                 .onTapGesture {
                                     destination.city = City(title: city.title, stations: city.stations)
