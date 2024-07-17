@@ -52,10 +52,9 @@ struct MainView: View {
                 findButtonIsHidden = false
             }
         })
-        //TODO
-//        .fullScreenCover(isPresented: $isPresentingSchedule) {
-//            ScheduleView(fromText: fromText, toText: toText)
-//        }
+        .fullScreenCover(isPresented: $isPresentingSchedule) {
+            ScheduleView(fromPath: fromPath, toPath: toPath)
+        }
     }
 }
 

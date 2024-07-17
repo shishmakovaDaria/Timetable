@@ -20,8 +20,8 @@ struct ScheduleRowView: View {
                     Text(schedule.carrier.title)
                         .font(.system(size: 17, weight: .regular))
                         .foregroundStyle(.ttBlackUniversal)
-                    if let transfer = schedule.transfer {
-                        Text(transfer)
+                    if schedule.transfer != nil {
+                        Text("с пересадкой")
                             .font(.system(size: 12, weight: .regular))
                             .foregroundStyle(.ttRed)
                     }
@@ -68,7 +68,7 @@ struct ScheduleRowView: View {
         schedule:
             Schedule(
                 carrier: MockData.mockCarriers[0],
-                transfer: "С пересадкой в Костроме",
+                transfer: true,
                 date: "14 января",
                 departureTime: "22:30",
                 arrivalTime: "08:15",

@@ -37,17 +37,20 @@ final class ChoosingCityViewModel: ObservableObject {
                         country.regions?.forEach { region in
                             region.settlements?.forEach { city in
                                 if let stations = city.stations {
-                                    allCities.append(
-                                        City(
-                                            title: city.title ?? "nil",
-                                            stations: stations.map({
-                                                Station(
-                                                    title: $0.title ?? "nil",
-                                                    code: $0.codes?.yandex_code ?? "nil"
-                                                )
-                                            })
-                                        )
+                                    let cityToAdd = City(
+                                        title: city.title ?? "nil",
+                                        stations: stations
+                                            .filter {$0.station_type == "train_station"}
+                                            .map({
+                                            Station(
+                                                title: $0.title ?? "nil",
+                                                code: $0.codes?.yandex_code ?? "nil"
+                                            )
+                                        })
                                     )
+                                    if cityToAdd.stations != [] {
+                                        allCities.append(cityToAdd)
+                                    }
                                     citiesToShow = allCities
                                     isLoading = false
                                 }

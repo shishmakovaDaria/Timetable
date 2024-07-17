@@ -56,7 +56,7 @@ enum MockData {
     static let mockSchedules: [Schedule] = [
         Schedule(
             carrier: mockCarriers[0],
-            transfer: "С пересадкой в Костроме",
+            transfer: true,
             date: "14 января",
             departureTime: "22:30",
             arrivalTime: "08:15",
@@ -80,7 +80,7 @@ enum MockData {
         ),
         Schedule(
             carrier: mockCarriers[0],
-            transfer: "С пересадкой в Костроме",
+            transfer: true,
             date: "14 января",
             departureTime: "22:30",
             arrivalTime: "08:15",
