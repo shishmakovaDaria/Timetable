@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FiltersView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var filters: Set<Filters> = [.afternoon]
+    @Binding var filters: Set<Filters>
     
     var body: some View {
         NavigationStack {
@@ -22,13 +22,37 @@ struct FiltersView: View {
                 }
                 .padding([.leading, .trailing], 16)
                 LazyVStack {
-                    FiltersRowView(title: "Утро 06:00 - 12:00", isCheckbox: true)
+                    FiltersRowView(isChecked: filters.contains(.morning), title: "Утро 06:00 - 12:00", isCheckbox: true, checked: {
+                        if filters.contains(.morning) {
+                            filters.remove(.morning)
+                        } else {
+                            filters.insert(.morning)
+                        }
+                    })
                         .listRowSeparator(.hidden)
-                    FiltersRowView(title: "День 12:00 - 18:00", isCheckbox: true)
+                    FiltersRowView(isChecked: filters.contains(.afternoon), title: "День 12:00 - 18:00", isCheckbox: true, checked: {
+                        if filters.contains(.afternoon) {
+                            filters.remove(.afternoon)
+                        } else {
+                            filters.insert(.afternoon)
+                        }
+                    })
                         .listRowSeparator(.hidden)
-                    FiltersRowView(title: "Вечер 18:00 - 00:00", isCheckbox: true)
+                    FiltersRowView(isChecked: filters.contains(.evening), title: "Вечер 18:00 - 00:00", isCheckbox: true, checked: {
+                        if filters.contains(.evening) {
+                            filters.remove(.evening)
+                        } else {
+                            filters.insert(.evening)
+                        }
+                    })
                         .listRowSeparator(.hidden)
-                    FiltersRowView(title: "Ночь 00:00 - 06:00", isCheckbox: true)
+                    FiltersRowView(isChecked: filters.contains(.night), title: "Ночь 00:00 - 06:00", isCheckbox: true, checked: {
+                        if filters.contains(.night) {
+                            filters.remove(.night)
+                        } else {
+                            filters.insert(.night)
+                        }
+                    })
                         .listRowSeparator(.hidden)
                 }
                 .padding(16)
@@ -41,9 +65,9 @@ struct FiltersView: View {
                 }
                 .padding([.leading, .trailing], 16)
                 LazyVStack {
-                    FiltersRowView(title: "Да", isCheckbox: false)
+                    FiltersRowView(isChecked: false, title: "Да", isCheckbox: false, checked: {})
                         .listRowSeparator(.hidden)
-                    FiltersRowView(title: "Нет", isCheckbox: false)
+                    FiltersRowView(isChecked: false, title: "Нет", isCheckbox: false, checked: {})
                         .listRowSeparator(.hidden)
                 }
                     .padding(16)
@@ -71,8 +95,4 @@ struct FiltersView: View {
             .tint(.ttBlack)
         }
     }
-}
-
-#Preview {
-    FiltersView()
 }

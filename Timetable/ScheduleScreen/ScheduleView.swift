@@ -12,6 +12,7 @@ struct ScheduleView: View {
     @Environment(\.dismiss) var dismiss
     @State var fromPath: PathModel
     @State var toPath: PathModel
+    @State private var filters: Set<Filters> = []
     
     var body: some View {
         NavigationStack {
@@ -37,7 +38,7 @@ struct ScheduleView: View {
                     }
                 }
                 
-                NavigationLink(destination: FiltersView()) {
+                NavigationLink(destination: FiltersView(filters: $filters)) {
                     Text("Уточнить время")
                         .frame(maxWidth: .infinity, maxHeight: 60)
                         .background(.ttBlue)
@@ -58,6 +59,9 @@ struct ScheduleView: View {
                         }
                     }
             )
+            .onChange(of: filters) { newFilters in
+                viewModel.filter(filters: filters)
+            }
             .task {
                 viewModel.loadSchedules(fromStation: fromPath.station.code, toStation: toPath.station.code)
             }

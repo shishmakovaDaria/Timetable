@@ -10,6 +10,7 @@ import OpenAPIURLSession
 
 @MainActor
 final class ScheduleViewModel: ObservableObject {
+    private var allSchedules: [Schedule] = []
     @Published var schedules: [Schedule] = []
     
     func loadSchedules(fromStation: String, toStation: String) {
@@ -37,7 +38,7 @@ final class ScheduleViewModel: ObservableObject {
                         email: segment.thread?.carrier?.email ?? "nil",
                         phone: segment.thread?.carrier?.phone ?? "nil"
                     )
-                    schedules.append(
+                    allSchedules.append(
                         Schedule(
                             carrier: carrier,
                             transfer: segment.has_transfers,
@@ -48,8 +49,41 @@ final class ScheduleViewModel: ObservableObject {
                         )
                     )
                 }
+                schedules = allSchedules
             } catch {
                 print("ERROR")
+            }
+        }
+    }
+    
+    func filter(filters: Set<Filters>) {
+        if filters.isEmpty {
+            schedules = allSchedules
+        } else {
+            schedules = []
+            if filters.contains(.morning) {
+                schedules.append(contentsOf: allSchedules.filter{
+                    let hour = Int($0.departureTime.prefix(2)) ?? 0
+                    return hour >= 6 && hour < 12
+                })
+            }
+            if filters.contains(.afternoon) {
+                schedules.append(contentsOf: allSchedules.filter{
+                    let hour = Int($0.departureTime.prefix(2)) ?? 0
+                    return hour >= 12 && hour < 18
+                })
+            }
+            if filters.contains(.evening) {
+                schedules.append(contentsOf: allSchedules.filter{
+                    let hour = Int($0.departureTime.prefix(2)) ?? 0
+                    return hour >= 18
+                })
+            }
+            if filters.contains(.night) {
+                schedules.append(contentsOf: allSchedules.filter{
+                    let hour = Int($0.departureTime.prefix(2)) ?? 0
+                    return hour < 6
+                })
             }
         }
     }
