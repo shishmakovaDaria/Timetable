@@ -8,25 +8,26 @@
 import SwiftUI
 
 struct ScheduleView: View {
+    @ObservedObject var viewModel = ScheduleViewModel()
     @Environment(\.dismiss) var dismiss
-    @State var fromText: String
-    @State var toText: String
-    @State private var schedules: [Schedule] = MockData.mockSchedules
+    @State var fromPath: PathModel
+    @State var toPath: PathModel
+    @State private var filters: Set<Filters> = []
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
-                Text("\(fromText) → \(toText)")
+                Text("\(fromPath.pathString) → \(toPath.pathString)")
                     .font(.system(size: 24, weight: .bold))
                     .padding([.leading, .trailing, .top], 16)
-                if schedules.isEmpty {
+                if viewModel.schedules.isEmpty {
                     Text("Вариантов нет")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundStyle(.ttBlack)
                 } else {
                     ScrollView (showsIndicators: false) {
                         LazyVStack {
-                            ForEach(schedules) { schedule in
+                            ForEach(viewModel.schedules) { schedule in
                                 NavigationLink(destination: CarrierView(carrier: schedule.carrier)) {
                                     ScheduleRowView(schedule: schedule)
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
@@ -37,7 +38,7 @@ struct ScheduleView: View {
                     }
                 }
                 
-                NavigationLink(destination: FiltersView()) {
+                NavigationLink(destination: FiltersView(filters: $filters)) {
                     Text("Уточнить время")
                         .frame(maxWidth: .infinity, maxHeight: 60)
                         .background(.ttBlue)
@@ -58,13 +59,12 @@ struct ScheduleView: View {
                         }
                     }
             )
+            .onChange(of: filters) { newFilters in
+                viewModel.filter(filters: filters)
+            }
+            .task {
+                viewModel.loadSchedules(fromStation: fromPath.station.code, toStation: toPath.station.code)
+            }
         }
     }
-}
-
-#Preview {
-    ScheduleView(
-        fromText: "Москва (Ярославский вокзал)",
-        toText: "Санкт-Петербург (Балтийский вокзал)"
-    )
 }

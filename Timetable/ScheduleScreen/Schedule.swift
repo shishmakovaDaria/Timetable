@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Schedule: Hashable, Identifiable {
+struct Schedule: Hashable, Identifiable, Sendable {
     var id = UUID()
     let carrier: Carrier
-    let transfer: String?
+    let transfer: Bool?
     let date: String
     let departureTime: String
     let arrivalTime: String

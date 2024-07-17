@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("isDarkMode") private var isDarkMode = false
+    @ObservedObject var viewModel = SettingsViewModel()
     @State var showWebView = false
     
     var body: some View {
         VStack {
             List {
-                Toggle("Темная тема", isOn: $isDarkMode)
+                Toggle("Темная тема", isOn: $viewModel.isDarkMode)
                     .tint(.ttBlue)
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.ttWhite)

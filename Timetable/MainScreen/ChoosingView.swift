@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ChoosingView: View {
-    @Binding var fromText: String
-    @Binding var toText: String
+    @Binding var fromPath: PathModel
+    @Binding var fromTextField: String
+    @Binding var toPath: PathModel
+    @Binding var toTextField: String
     @State private var isPresentingChoosingCity = false
     @State private var choosingFrom: Bool = true
     
@@ -26,7 +28,7 @@ struct ChoosingView: View {
                         .foregroundStyle(.white)
                     VStack(alignment: .leading, spacing: 28) {
                         ZStack {
-                            TextField("", text: $fromText, prompt: Text("Откуда").foregroundColor(.ttGray))
+                            TextField("", text: $fromTextField, prompt: Text("Откуда").foregroundColor(.ttGray))
                                 .font(.system(size: 17, weight: .regular))
                                 .foregroundStyle(.ttBlackUniversal)
                                 .disabled(true)
@@ -37,7 +39,7 @@ struct ChoosingView: View {
                             isPresentingChoosingCity = true
                         }
                         ZStack {
-                            TextField("", text: $toText, prompt: Text("Куда").foregroundColor(.ttGray))
+                            TextField("", text: $toTextField, prompt: Text("Куда").foregroundColor(.ttGray))
                                 .font(.system(size: 17, weight: .regular))
                                 .foregroundStyle(.ttBlackUniversal)
                                 .disabled(true)
@@ -58,12 +60,12 @@ struct ChoosingView: View {
         }
         .frame(height: 128)
         .fullScreenCover(isPresented: $isPresentingChoosingCity) {
-            let destination = choosingFrom ? $fromText : $toText
-            ChoosingCityView(destinationBinding: destination)
+            let destination = choosingFrom ? $fromPath : $toPath
+            ChoosingCityView(destination: destination)
         }
     }
     
     private func changeTapped() {
-        swap(&fromText, &toText)
+        swap(&fromPath, &toPath)
     }
 }

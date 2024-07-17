@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct FiltersRowView: View {
-    @State private var isChecked: Bool = false
+    @State var isChecked: Bool
     var title: String
     var isCheckbox: Bool
+    var checked: () -> Void
     
     var body: some View {
         HStack {
@@ -29,6 +30,9 @@ struct FiltersRowView: View {
         }
         .frame(height: 60)
         .background(.ttWhite)
+        .onChange(of: isChecked) { _ in
+            checked()
+        }
     }
 }
 
@@ -58,8 +62,4 @@ struct CheckcircleToggleStyle: ToggleStyle {
             .onTapGesture { configuration.isOn.toggle() }
     }
   }
-}
-
-#Preview {
-    FiltersRowView(title: "Утро 06:00 - 12:00", isCheckbox: false)
 }

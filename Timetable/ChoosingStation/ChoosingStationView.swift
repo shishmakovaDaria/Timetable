@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ChoosingStationView: View {
+    @ObservedObject var viewModel = ChoosingStationViewModel()
     @Environment(\.dismiss) var dismiss
-    @Binding var destinationBinding: String
-    var selectedCity: City
-    @State var stations: [Station]
+    @Binding var destination: PathModel
     @State private var searchText = ""
     
     var body: some View {
@@ -19,12 +18,12 @@ struct ChoosingStationView: View {
             ZStack {
                 Color.ttWhite.ignoresSafeArea()
                 VStack {
-                    if stations.isEmpty {
+                    if viewModel.stationsToShow.isEmpty {
                         Text("Станция не найдена")
                             .font(.system(size: 24, weight: .bold))
                             .foregroundStyle(.ttBlack)
                     } else {
-                        List(stations) { station in
+                        List(viewModel.stationsToShow) { station in
                             HStack {
                                 Text(station.title)
                                 Spacer()
@@ -33,7 +32,7 @@ struct ChoosingStationView: View {
                             .listRowSeparator(.hidden)
                             .listRowBackground(Color.ttWhite)
                             .onTapGesture {
-                                destinationBinding = "\(selectedCity.title) (\(station.title))"
+                                destination.station = Station(title: station.title, code: station.code)
                                 dismiss()
                             }
                         }
@@ -54,15 +53,11 @@ struct ChoosingStationView: View {
         }
         
         .onChange(of: searchText, perform: { _ in
-            if searchText.isEmpty {
-                stations = selectedCity.stations
-            } else {
-                stations = filterStations(query: searchText)
-            }
+            viewModel.filterStations(query: searchText)
         })
-    }
-    
-    private func filterStations(query: String) -> [Station] {
-        selectedCity.stations.filter({ $0.title.lowercased().contains(query.lowercased())})
+        .onAppear {
+            viewModel.allStations = destination.city.stations
+            viewModel.stationsToShow = destination.city.stations
+        }
     }
 }

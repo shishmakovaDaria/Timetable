@@ -27,7 +27,8 @@ final class ScheduleBetweenStationsService: ScheduleBetweenStationsServiceProtoc
         let response = try await client.getScheduleBetweenStations(query: .init(
             apikey: apikey,
             from: fromStation,
-            to: toStation
+            to: toStation,
+            transport_types: "train"
         ))
         
         return try response.ok.body.json
