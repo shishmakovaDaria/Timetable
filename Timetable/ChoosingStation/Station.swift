@@ -10,4 +10,5 @@ import Foundation
 struct Station: Hashable, Identifiable {
     var id = UUID()
     var title: String
+    var code: String
 }

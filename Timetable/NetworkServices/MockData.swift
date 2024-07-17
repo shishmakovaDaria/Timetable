@@ -20,13 +20,13 @@ enum MockData {
     ]
     
     static let mockStations: [Station] = [
-        Station(title: "Киевский вокзал"),
-        Station(title: "Курский вокзал"),
-        Station(title: "Ярославский вокзал"),
-        Station(title: "Белорусский вокзал"),
-        Station(title: "Ленинградский вокзал"),
-        Station(title: "Московский вокзал"),
-        Station(title: "Витебский вокзал")
+        Station(title: "Киевский вокзал", code: "nil"),
+        Station(title: "Курский вокзал", code: "nil"),
+        Station(title: "Ярославский вокзал", code: "nil"),
+        Station(title: "Белорусский вокзал", code: "nil"),
+        Station(title: "Ленинградский вокзал", code: "nil"),
+        Station(title: "Московский вокзал", code: "nil"),
+        Station(title: "Витебский вокзал", code: "nil")
     ]
     
     static let mockCarriers: [Carrier] = [

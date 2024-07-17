@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ChoosingStationView: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var destinationBinding: String
-    var selectedCity: City
+    @Binding var destination: PathModel
     @State var stations: [Station]
     @State private var searchText = ""
     
@@ -33,7 +32,7 @@ struct ChoosingStationView: View {
                             .listRowSeparator(.hidden)
                             .listRowBackground(Color.ttWhite)
                             .onTapGesture {
-                                destinationBinding = "\(selectedCity.title) (\(station.title))"
+                                destination.station = Station(title: station.title, code: station.code)
                                 dismiss()
                             }
                         }
@@ -55,7 +54,7 @@ struct ChoosingStationView: View {
         
         .onChange(of: searchText, perform: { _ in
             if searchText.isEmpty {
-                stations = selectedCity.stations
+                stations = destination.city.stations
             } else {
                 stations = filterStations(query: searchText)
             }
@@ -63,6 +62,6 @@ struct ChoosingStationView: View {
     }
     
     private func filterStations(query: String) -> [Station] {
-        selectedCity.stations.filter({ $0.title.lowercased().contains(query.lowercased())})
+        destination.city.stations.filter({ $0.title.lowercased().contains(query.lowercased())})
     }
 }

@@ -10,7 +10,8 @@ import SwiftUI
 struct ChoosingCityView: View {
     @ObservedObject var viewModel = ChoosingCityViewModel()
     @Environment(\.dismiss) var dismiss
-    @Binding var destinationBinding: String
+    @Binding var destination: PathModel
+    @State var isPresented: Bool = false
     @State private var searchText = ""
     
     var body: some View {
@@ -18,27 +19,35 @@ struct ChoosingCityView: View {
             ZStack {
                 Color.ttWhite.ignoresSafeArea()
                 VStack {
-                    if viewModel.citiesToShow.isEmpty {
-                        Text("Город не найден")
-                            .font(.system(size: 24, weight: .bold))
-                            .foregroundStyle(.ttBlack)
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .progressViewStyle(.circular)
                     } else {
-                        List(viewModel.citiesToShow) { city in
-                            HStack {
-                                Text(city.title)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .background(
-                                        NavigationLink("", destination: ChoosingStationView(dismiss: _dismiss, destinationBinding: $destinationBinding, selectedCity: city, stations: city.stations))
-                                            .opacity(0)
-                                    )
+                        if viewModel.citiesToShow.isEmpty {
+                            Text("Город не найден")
+                                .font(.system(size: 24, weight: .bold))
+                                .foregroundStyle(.ttBlack)
+                        } else {
+                            List(viewModel.citiesToShow) { city in
+                                HStack {
+                                    Text(city.title)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }
+                                .navigationDestination(isPresented: $isPresented) {
+                                    ChoosingStationView(dismiss: _dismiss, destination: $destination, stations: city.stations)
+                                }
+                                .onTapGesture {
+                                    destination.city = City(title: city.title, stations: city.stations)
+                                    isPresented = true
+                                }
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.ttWhite)
                             }
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.ttWhite)
+                            .listStyle(.plain)
+                            .scrollContentBackground(.hidden)
+                            .listRowSpacing(19)
                         }
-                        .listStyle(.plain)
-                        .scrollContentBackground(.hidden)
-                        .listRowSpacing(19)
                     }
                 }
             }
